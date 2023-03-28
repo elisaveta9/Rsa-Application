@@ -1,0 +1,277 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+	<!--Standart ScrollBar Style-->
+	<Style TargetType="ScrollBar">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="ScrollBar">
+					<Grid Width="10">
+						<Border Width="10" HorizontalAlignment="Center" CornerRadius="6" Background="{DynamicResource BackgroundScrollBar}">
+						</Border>
+						<Track HorizontalAlignment="Center" Name="PART_Track" Width="{TemplateBinding Width}" Maximum="{TemplateBinding Maximum}" Minimum="{TemplateBinding Minimum}"
+                                    Value="{TemplateBinding Value}"  IsDirectionReversed="true">
+							<Track.DecreaseRepeatButton>
+								<RepeatButton Template="{DynamicResource scroll_background}" Command="ScrollBar.LineUpCommand"  />
+							</Track.DecreaseRepeatButton>
+							<Track.IncreaseRepeatButton>
+								<RepeatButton Template="{DynamicResource scroll_background}" Command="ScrollBar.LineDownCommand" />
+							</Track.IncreaseRepeatButton>
+							<Track.Thumb>
+								<Thumb Style="{DynamicResource scroll_thumb_style}" >
+								</Thumb>
+							</Track.Thumb>
+						</Track>
+
+					</Grid>
+
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+	<Style x:Key="scroll_thumb_style" TargetType="Thumb">
+		<Setter Property="SnapsToDevicePixels" Value="True"/>
+		<Setter Property="OverridesDefaultStyle" Value="true"/>
+		<Setter Property="IsTabStop" Value="false"/>
+		<Setter Property="Focusable" Value="false"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="Thumb">
+					<Rectangle Width="8" Fill="{DynamicResource ScrollThumbColor}" RadiusX="6" RadiusY="6">
+					</Rectangle>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+	<ControlTemplate x:Key="scroll_background" TargetType="RepeatButton">
+		<Border Background="Transparent">
+		</Border>
+	</ControlTemplate>
+
+	<!--Window Border Style-->
+	<Style TargetType="Border" x:Key="WindowBorder">
+		<Setter Property="CornerRadius" Value="8"/>
+		<Setter Property="BorderThickness" Value="3"/>
+		<Setter Property="Margin" Value="8"/>
+		<Setter Property="BorderBrush" Value="{DynamicResource WindowBorderColor}"/>
+		<Setter Property="Background" Value="{DynamicResource BackgroundWindow}"/>
+	</Style>
+
+	<!--TextBox Style-->
+	<Style TargetType="TextBox" x:Key="MainTextBox">
+		<Setter Property="TextWrapping" Value="Wrap"/>
+		<Setter Property="MinHeight" Value="150"/>
+		<Setter Property="MinWidth" Value="300"/>
+		<Setter Property="Padding" Value="4"/>
+		<Setter Property="Margin" Value="8"/>
+		<Setter Property="BorderThickness" Value="0"/>
+		<Setter Property="SelectionBrush" Value="{DynamicResource SelectionBrush}"/>
+		<Setter Property="SelectionTextBrush" Value="{DynamicResource SelectionTextBrush}"/>
+		<Setter Property="BorderBrush" Value="{DynamicResource BorderRichTextBox}"/>
+		<Setter Property="Background" Value="{DynamicResource BackgroundRichTextBox}"/>
+		<Setter Property="Foreground" Value="{DynamicResource ForegroundRichTextBox}"/>
+		<Setter Property="FontSize" Value="{DynamicResource RichTextBoxFS}"/>
+		<Setter Property="VerticalScrollBarVisibility" Value="Auto"/>
+		<Style.Resources>
+			<Style TargetType="{x:Type Border}">
+				<Setter Property="CornerRadius" Value="5"/>
+			</Style>				
+		</Style.Resources>
+	</Style>
+
+	<!--Button Styles-->
+	<Style TargetType="Button" x:Key="AddButton">
+		<Setter Property="Width" Value="150"/>
+		<Setter Property="Height" Value="25"/>
+		<Setter Property="Background" Value="{DynamicResource BackgroundStandartButton}"/>
+		<Setter Property="Foreground" Value="{DynamicResource ForegroundButton}"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Button}">
+					<Border Background="{TemplateBinding Background}" CornerRadius="15" BorderThickness="0">
+						<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+					</Border>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+		<Style.Triggers>
+			<Trigger Property="IsMouseOver" Value="True">
+				<Setter Property="Background" Value="{DynamicResource BackgroundMenuButtonOver}"/>
+			</Trigger>
+		</Style.Triggers>
+	</Style>
+
+	<Style TargetType="Button" x:Key="MenuButton">
+		<Setter Property="Background" Value="{DynamicResource BackgroundStandartButton}"/>
+		<Setter Property="Foreground" Value="{DynamicResource ForegroundButton}"/>
+		<Setter Property="FontSize" Value="{DynamicResource MenuButtonFS}"/>
+		<Setter Property="Height" Value="20"/>
+		<Setter Property="Width" Value="Auto"/>
+		<Setter Property="Margin" Value="1.5, 0, 1.5, 0.1"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Button}">
+					<Border Background="{TemplateBinding Background}" CornerRadius="5" BorderThickness="0">
+						<ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
+					</Border>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+		<Style.Triggers>
+			<Trigger Property="IsMouseOver" Value="True">
+				<Setter Property="Background" Value="{DynamicResource BackgroundMenuButtonOver}"/>
+			</Trigger>
+			<Trigger Property="IsEnabled" Value="False">
+				<Setter Property="Background" Value="{DynamicResource BackgroundNotEnabledButton}"/>
+			</Trigger>
+		</Style.Triggers>
+	</Style>
+
+	<Style TargetType="Button" x:Key="BaseButton">
+		<Setter Property="Background" Value="{DynamicResource BackgroundBaseButton}"/>
+		<Setter Property="BorderBrush" Value="{DynamicResource BackgroundBaseButton}"/>
+		<Setter Property="Foreground" Value="{DynamicResource TextColor}"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Button}">
+					<Border Background="{TemplateBinding Background}" CornerRadius="3" BorderThickness="1">
+						<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+					</Border>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+		<Style.Triggers>
+			<Trigger Property="IsMouseOver" Value="True">
+				<Setter Property="Background" Value="{DynamicResource BackgroundDefaultButtonOver}"/>
+				<Setter Property="BorderBrush" Value="{DynamicResource BackgroundDefaultButtonOver}"/>
+				<Setter Property="Foreground" Value="WhiteSmoke"/>
+			</Trigger>
+		</Style.Triggers>
+	</Style>
+
+	<Style TargetType="Button" x:Key="ExitButton">
+		<Setter Property="Height" Value="20"/>
+		<Setter Property="Width" Value="20"/>
+		<Setter Property="Background" Value="Transparent"/>
+		<Setter Property="VerticalAlignment" Value="Center"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Button}">
+					<Canvas Width="20" Height="20" Background="{DynamicResource BackgroundWindow}">
+						<Path x:Name="IconMouseOver" Fill="{DynamicResource ExitButtonOver}" Data="M16.417 10.283A7.917 7.917 0 1 1 8.5 2.366a7.916 7.916 0 0 1 7.917 7.917zm-6.804.01 3.032-3.033a.792.792 0 0 0-1.12-1.12L8.494 9.173 5.46 6.14a.792.792 0 0 0-1.12 1.12l3.034 3.033-3.033 3.033a.792.792 0 0 0 1.12 1.119l3.032-3.033 3.033 3.033a.792.792 0 0 0 1.12-1.12z" Visibility="Hidden" HorizontalAlignment="Left" Height="20" Stretch="Fill" Canvas.Top="0" VerticalAlignment="Top" Canvas.Left="0" Width="20"/>
+						<Path x:Name="DefaultIcon" Fill="Black" Data="M 9.613 10.293 12.645 7.26 C 13.376695 6.5133713 12.271629 5.4083047 11.525 6.14 L 8.494 9.173 5.46 6.14 C 4.7133713 5.4083047 3.6083047 6.5133713 4.34 7.26 l 3.034 3.033 -3.033 3.033 c -0.7000092 0.746286 0.3743395 1.819676 1.12 1.119 l 3.032 -3.033 3.033 3.033 c 0.746629 0.731695 1.851695 -0.373371 1.12 -1.12 z" HorizontalAlignment="Center" Height="11.5" Stretch="Fill" Canvas.Top="4.25" VerticalAlignment="Center" Canvas.Left="4.25" Width="11.5"/>
+					</Canvas>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsMouseOver" Value="True">
+							<Setter TargetName="IconMouseOver" Property="Visibility" Value="Visible"/>
+							<Setter TargetName="DefaultIcon" Property="Visibility" Value="Hidden"/>
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style TargetType="Button" x:Key="MaximazeButton">
+		<Setter Property="Height" Value="20"/>
+		<Setter Property="Width" Value="20"/>
+		<Setter Property="Background" Value="Transparent"/>
+		<Setter Property="VerticalAlignment" Value="Center"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Button}">
+					<Canvas Width="20" Height="20" Background="{DynamicResource BackgroundWindow}">
+						<Line x:Name="Circle" Visibility="Hidden" Y1="10" X2="10" Y2="10" Stroke="{DynamicResource BackgroundDefaultButtonOver}" StrokeThickness="20" Fill="Black" StrokeDashCap="Round" StrokeEndLineCap="Round" X1="10" StrokeLineJoin="Round" StrokeStartLineCap="Round"/>
+						<Path x:Name="MinMax" Visibility="Hidden" Fill="#000000" Data="M40.5 51.3c0.7 0.8 1.2 1.9 1.2 2.9l0 20.9c0 2.2-1.8 3.8-4 3.8h0.1c-2.2 0-3.8-1.5-3.8-3.7V64L9 88.8  C8.2 89.6 7 90 6 90s-2-0.4-2.8-1.2c-1.6-1.6-1.6-4.2 0-5.7L28 58H16.7c-2.2 0-4-1.8-4-4c0-2.2 1.8-4 4-4h21  C38.8 50 39.8 50.5 40.5 51.3z M88.8 3.2c-1.6-1.6-4-1.6-5.6 0L58 28.5V17.1c0-2.2-1.8-4.1-4.1-4.1h0c-2.2 0-4 1.8-4 4l0 21  c0 1.1 0.4 2 1.2 2.8c0.8 0.8 1.8 1.1 2.8 1.1h21c2.2 0 4-1.8 4-4c0-2.2-1.8-4-4-4H63.5L88.8 8.8C90.4 7.2 90.4 4.7 88.8 3.2z" Stretch="Fill" Height="20" Width="20"/>
+						<Path x:Name="MaxMin" Visibility="Visible" Fill="#000000" Data="M90 6l0 21c0 2.2-1.8 4-4 4l0 0c-2.2 0-4-1.8-4-4V15.7L56.7 40.9c-0.8 0.8-1.8 1.2-2.8 1.2  c-1 0-2-0.4-2.8-1.2c-1.6-1.6-1.6-4.1 0-5.7L76.3 10H65c-2.2 0-4-1.8-4-4c0-2.2 1.8-4 4-4h21c1.1 0 2.1 0.4 2.8 1.2  C89.6 3.9 90 4.9 90 6z M34.9 51.5L10 76.3V65c0-2.2-1.8-4-4-4l0 0c-2.2 0-4 1.8-4 4l0 21c0 1.1 0.4 2.1 1.2 2.8  C3.9 89.6 4.9 90 6 90l21 0c2.2 0 4-1.8 4-4c0-2.2-1.8-4-4-4H15.7l24.9-24.9c1.6-1.6 1.6-4.1 0-5.7C39 49.9 36.4 49.9 34.9 51.5z" Height="20" Stretch="Fill" Width="20"/>
+					</Canvas>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsMouseOver" Value="True">
+							<Setter TargetName="Circle" Property="Visibility" Value="Visible"/>
+							<Setter TargetName="MaxMin" Property="Fill" Value="{DynamicResource BackgroundStandartButton}"/>
+							<Setter TargetName="MinMax" Property="Fill" Value="{DynamicResource BackgroundStandartButton}"/>
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style TargetType="Button" x:Key="MinimazeButton">
+		<Setter Property="Height" Value="20"/>
+		<Setter Property="Width" Value="20"/>
+		<Setter Property="Background" Value="Transparent"/>
+		<Setter Property="VerticalAlignment" Value="Center"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Button}">
+					<Canvas Background="{DynamicResource BackgroundWindow}" Height="20" Width="20">
+						<Line x:Name="Circle" Visibility="Hidden" Y1="10" X2="10" Y2="10" Stroke="{DynamicResource BackgroundDefaultButtonOver}" StrokeThickness="20" Fill="Black" StrokeDashCap="Round" StrokeEndLineCap="Round" X1="10" StrokeLineJoin="Round" StrokeStartLineCap="Round"/>
+						<Line Name="MinimazeLine" X1="2.5" Y1="15" X2="17.5" Y2="15" Stroke="Black"
+						  StrokeThickness="2" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Height="20" Width="20"/>
+					</Canvas>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsMouseOver" Value="True">
+							<Setter TargetName="Circle" Property="Visibility" Value="Visible"/>
+							<Setter TargetName="MinimazeLine" Property="Stroke" Value="{DynamicResource BackgroundStandartButton}"/>
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<!--TextBlock-->
+	<Style TargetType="TextBlock" x:Key="MessegeText">
+		<Setter Property="FontSize" Value="{DynamicResource MessegeWFS}"/>
+		<Setter Property="FontFamily" Value="{DynamicResource BaseFontFamily}"/>
+		<Setter Property="MinHeight" Value="40"/>
+		<Setter Property="MinWidth" Value="180"/>
+		<Setter Property="TextAlignment" Value="Center"/>
+		<Setter Property="TextWrapping" Value="Wrap"/>
+	</Style>
+
+	<Style TargetType="TextBlock" x:Key="NameWindow">
+		<Setter Property="Background" Value="{DynamicResource BackgroundWindow}"/>
+		<Setter Property="Foreground" Value="{DynamicResource TextColor}"/>
+		<Setter Property="FontFamily" Value="{DynamicResource BaseFontFamily}"/>
+		<Setter Property="FontSize" Value="{DynamicResource NameWindowFS}"/>
+		<Setter Property="VerticalAlignment" Value="Center"/>
+	</Style>
+	
+	<!--RadioButton-->
+	<Style TargetType="RadioButton">
+		<Setter Property="Foreground" Value="White"/>
+		<Setter Property="BorderBrush" Value="{x:Null}"/>
+		<Setter Property="Margin" Value="2,0,2,0"/>
+	</Style>
+
+	<Style TargetType="RadioButton" x:Key="LenghtRButton">
+		<Setter Property="Width" Value="100"/>
+		<Setter Property="Background" Value="{DynamicResource SelectionBrush}"/>
+		<Setter Property="BorderBrush" Value="{x:Null}"/>
+		<Setter Property="Foreground" Value="{DynamicResource ForegroundRichTextBox}"/>
+		<Setter Property="HorizontalAlignment" Value="Center"/>
+		<Setter Property="VerticalAlignment" Value="Center"/>
+	</Style>
+
+	<!--ListBoxElement-->
+	<Style TargetType="ListBox" x:Key="KeysManager">
+		<Setter Property="Background" Value="{DynamicResource BackgroundWindow}"/>
+		<Setter Property="BorderBrush" Value="{x:Null}"/>
+		<Setter Property="SelectionMode" Value="Extended"/>
+		<Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
+		<Setter Property="Margin" Value="2,0,2,2"/>		
+	</Style>
+	
+	<!--ComboBox Style-->
+	<Style TargetType="ComboBox">
+		<Setter Property="Background" Value="{DynamicResource BackgroundRichTextBox}"/>
+		<Setter Property="BorderBrush" Value="{DynamicResource BorderRichTextBox}"/>
+		<Setter Property="Foreground" Value="{StaticResource TextColor}"/>
+		<Setter Property="HorizontalContentAlignment" Value="Center"/>
+		<Setter Property="Height" Value="20.35"/>
+		<Setter Property="Width" Value="80"/>
+	</Style>
+
+</ResourceDictionary>

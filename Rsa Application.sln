@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32929.385
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rsa Application", "Rsa Application\Rsa Application.csproj", "{12BD19DC-6329-49B8-9EBC-C2C0BB6A01C4}"
+	ProjectSection(ProjectDependencies) = postProject
+		{02E70CDC-0794-4939-BA2F-0D24F2011263} = {02E70CDC-0794-4939-BA2F-0D24F2011263}
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rsa Application.Cryptography", "Rsa Application.Cryptography\Rsa Application.Cryptography.csproj", "{02E70CDC-0794-4939-BA2F-0D24F2011263}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rsa Application.Database", "Rsa Application.Database\Rsa Application.Database.csproj", "{07972B35-9EE5-44BC-85C0-EF039E40907C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{12BD19DC-6329-49B8-9EBC-C2C0BB6A01C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12BD19DC-6329-49B8-9EBC-C2C0BB6A01C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12BD19DC-6329-49B8-9EBC-C2C0BB6A01C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12BD19DC-6329-49B8-9EBC-C2C0BB6A01C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02E70CDC-0794-4939-BA2F-0D24F2011263}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02E70CDC-0794-4939-BA2F-0D24F2011263}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02E70CDC-0794-4939-BA2F-0D24F2011263}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02E70CDC-0794-4939-BA2F-0D24F2011263}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07972B35-9EE5-44BC-85C0-EF039E40907C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07972B35-9EE5-44BC-85C0-EF039E40907C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07972B35-9EE5-44BC-85C0-EF039E40907C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07972B35-9EE5-44BC-85C0-EF039E40907C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2B4ACCBB-1368-48FB-954E-B2C8EBD0B151}
+	EndGlobalSection
+EndGlobal

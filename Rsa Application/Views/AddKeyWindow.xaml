@@ -1,0 +1,60 @@
+﻿<Window x:Class="Rsa_Application.AddKeyWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewmodels="clr-namespace:Rsa_Application.ViewModels"
+        d:DataContext="{d:DesignInstance Type=viewmodels:AddKeyViewModel}"
+		mc:Ignorable="d" Height="250" Width="200"
+		WindowStyle="None" ResizeMode="NoResize"
+		Background="Transparent" AllowsTransparency="True"
+		FontFamily="{StaticResource BaseFontFamily}"
+		WindowStartupLocation="CenterOwner">
+	<Border Style="{StaticResource WindowBorder}" Margin="0">
+		<Grid>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition/>
+			</Grid.RowDefinitions>
+			<StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right" Margin="3,2,3,0"
+						MouseDown="Grid_MouseDown">
+				<TextBlock Text="{StaticResource AddKeyWindow}" Style="{StaticResource NameWindow}" Width="148"/>
+				<Button Style="{StaticResource MinimazeButton}" Click="MinimazeButton_Click"/>
+				<Button Style="{StaticResource ExitButton}" Click="ExitButton_Click"/>
+			</StackPanel>
+			<StackPanel Grid.Row="1" Orientation="Vertical">
+				<StackPanel Orientation="Horizontal" Margin="2.5,25,2.5,0">
+					<TextBlock Text="{StaticResource NameKey}" FontSize="15" Width="66" Margin="0,0,10.4,0"/>
+					<TextBox x:Name="nameKey" FontSize="15" Background="{x:Null}" BorderBrush="{x:Null}" 
+							 Foreground="{StaticResource TextColor}" Width="112" Text="{Binding Name}"
+							 SelectionBrush="{StaticResource SelectTextColor}" BorderThickness="0,0,0,0" />
+				</StackPanel>
+				<Line X1="80" Y1="0" X2="190" Y2="0" Stroke="{StaticResource SelectTextColor}" StrokeStartLineCap="Round"
+					  StrokeEndLineCap="Round"/>
+				<StackPanel Orientation="Horizontal" Margin="2.5,15,2.5,0">
+					<TextBlock Text="{StaticResource Bits}" FontSize="15"/>
+				</StackPanel>
+				<WrapPanel>
+					<StackPanel Orientation="Vertical" Width="100">
+						<RadioButton IsChecked="{Binding IsSelectLowBits, Mode=TwoWay}" Style="{StaticResource LenghtRButton}" 
+									 Content="{StaticResource LowBits}" Margin="0,5,0,5"/>
+						<RadioButton IsChecked="{Binding IsSelectBigBits, Mode=TwoWay}" Style="{StaticResource LenghtRButton}" 
+									 Content="{StaticResource BigBits}" Margin="0,5,0,5"/>
+					</StackPanel>
+					<StackPanel Orientation="Vertical">
+						<TextBox x:Name="bitsl" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{StaticResource TextColor}" 
+							 Width="80" SelectionBrush="{StaticResource SelectTextColor}" BorderThickness="0" 
+							 MaxLength="4" VerticalAlignment="Center" Margin="6,4.5,0,4.5" 
+							 PreviewTextInput="NumberValidationTextBox"
+							 Text="{Binding LowBits}" TextAlignment="Right"/>
+						<ComboBox Margin="6,1.5,0,1.5"
+							  ItemsSource="{Binding BBits}" 
+							  SelectedItem="{Binding BigBits}" />
+					</StackPanel>
+				</WrapPanel>
+				<Button Content="{StaticResource CreateKey}" Style="{StaticResource AddButton}" 
+						Margin="0,25,0,0" Command="{Binding AddKey}"/>
+			</StackPanel>
+		</Grid>
+	</Border>
+</Window>

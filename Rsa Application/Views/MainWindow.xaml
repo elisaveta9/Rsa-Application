@@ -1,0 +1,100 @@
+﻿<Window x:Class="Rsa_Application.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Rsa_Application"
+        xmlns:common="clr-namespace:Rsa_Application.Common.Converters"
+        xmlns:viewmodels="clr-namespace:Rsa_Application.ViewModels"
+        d:DataContext="{d:DesignInstance viewmodels:MainViewModel}"
+		mc:Ignorable="d" x:Name="AppWindow"
+		Height="600" MinHeight="500" Width="800" MinWidth="495"
+		FontFamily="{DynamicResource BaseFontFamily}" 
+		WindowStyle="None"	AllowsTransparency="True" 
+		ResizeMode="CanResizeWithGrip" Background="Transparent"
+		WindowStartupLocation="CenterScreen" Icon="Key.ico">
+	<Window.Resources>
+		<common:RTBHeightConverter x:Key="heightconverter"/>
+		<common:RTBWidthConverter x:Key="widthconverter"/>
+	</Window.Resources>
+	<Border Style="{StaticResource WindowBorder}">
+		<Grid>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition/>
+			</Grid.RowDefinitions>
+			<Grid Grid.Row="0" MouseDown="Grid_MouseDown" Height="26" 
+				  Background="{StaticResource BackgroundWindow}" Margin="3,2,3,0">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto"/>
+					<ColumnDefinition Width="*" MinWidth="3"/>
+					<ColumnDefinition Width="Auto"/>
+				</Grid.ColumnDefinitions>
+				<TextBlock Grid.Column="0" Text="Rsa Converter" Style="{StaticResource NameWindow}"/>
+				<TextBlock Grid.Column="1" Text="{Binding StateApp}" Style="{StaticResource NameWindow}" Margin="2,0,0,0"/>
+				<StackPanel Grid.Column="2" Orientation="Horizontal" Background="{DynamicResource BackgroundWindow}" >
+					<Button x:Name="MinimazeButton" Style="{StaticResource MinimazeButton}" Click="MinimazeButton_Click"/>
+					<Button x:Name="MaximazeButton" Style="{StaticResource MaximazeButton}" Click="MaximazeButton_Click"/>
+					<Button x:Name="ExitButton" Style="{StaticResource ExitButton}" 
+							Click="ExitButton_Click"/>
+				</StackPanel>
+			</Grid>
+			<StackPanel Grid.Row="1" Orientation="Horizontal" 
+						Background="{StaticResource BackgroundMenu}">
+				<StackPanel Orientation="Vertical">
+					<Button Style="{StaticResource MenuButton}" Content="{StaticResource CreateButton}"
+							Command="{Binding CreateFile}"/>
+					<Button Style="{StaticResource MenuButton}" Content="{StaticResource OpenButton}"
+							Command="{Binding OpenCommand}"/>
+					<Button Style="{StaticResource MenuButton}" Content="{StaticResource ManageButton}"
+							IsEnabled="{Binding IsEnabledManagerKeysButton, Mode=OneWay}" Command="{Binding OpenDialogWindow}"/>
+				</StackPanel>
+				<StackPanel Orientation="Vertical">
+					<Button Style="{StaticResource MenuButton}" Content="{StaticResource EncryptButton}"
+							Command="{Binding Encrypt}" IsEnabled="{Binding IsEnabledEncryptButton}"/>
+					<Button Style="{StaticResource MenuButton}" Content="{StaticResource DecryptButton}"
+							Command="{Binding Decrypt}" IsEnabled="{Binding IsEnabledDecryptButton}"/>
+					<Button Style="{StaticResource MenuButton}" Content="{StaticResource EditButton}"
+							Command="{Binding EditCommand}" IsEnabled="{Binding IsEnabledEditButton}"/>
+				</StackPanel>
+				<StackPanel Orientation="Vertical">
+					<Button Style="{StaticResource MenuButton}" Content="{StaticResource SaveButton}"
+							Command="{Binding SaveCommand}"/>
+					<Button Style="{StaticResource MenuButton}" Content="{StaticResource SaveCtAsButton}"
+							Command="{Binding SaveCommandAs}"/>
+					<Button Style="{StaticResource MenuButton}" Content="{StaticResource SaveStAsButton}"
+							Command="{Binding SaveSourceCommand}"/>
+				</StackPanel>
+			</StackPanel>
+			<StackPanel Grid.Row="2" Orientation="Horizontal"
+						Background="{StaticResource BackgroundMenu}">
+				<RadioButton IsChecked="{Binding IsSimpleRSA}" 
+							 Content="{StaticResource SimpleRsa}" IsEnabled="{Binding IsEnabledRadioButton}"/>
+				<RadioButton IsChecked="{Binding IsRSAAdd}" 
+							 Content="{StaticResource RsaWithAddBytes}" IsEnabled="{Binding IsEnabledRadioButton}"/>
+				<RadioButton IsChecked="{Binding IsRSAComp}"
+							 Content="{StaticResource RsaWithConcateBytes}" IsEnabled="{Binding IsEnabledRadioButton}"/>
+				<RadioButton IsChecked="{Binding IsRSAEP_OAEP}" 
+							 Content="RSAES-OAEP" IsEnabled="{Binding IsEnabledRadioButton}"/>
+			</StackPanel>
+			<WrapPanel Grid.Row="3">
+				<TextBox x:Name="FileText" Width="{Binding ElementName=AppWindow, Path=ActualWidth, Converter={StaticResource widthconverter}}" 
+						 Text="{Binding FileText}" Style="{StaticResource MainTextBox}"
+						 IsReadOnly="{Binding CanEditFileText}">
+					<TextBox.Height>
+						<MultiBinding Converter="{StaticResource heightconverter}">
+							<Binding ElementName="AppWindow" Path="ActualWidth"/>
+							<Binding ElementName="AppWindow" Path="ActualHeight"/>
+						</MultiBinding>
+					</TextBox.Height>
+				</TextBox>
+				<TextBox Width="{Binding ElementName=FileText, Path=Width}"
+						 Height="{Binding ElementName=FileText, Path=Height}"
+						 Text="{Binding ProgramText}" Style="{StaticResource MainTextBox}"
+						 IsReadOnly="{Binding CanEditProgText}"/>
+			</WrapPanel>
+		</Grid>
+	</Border>
+</Window>

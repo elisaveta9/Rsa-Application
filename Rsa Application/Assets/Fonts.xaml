@@ -1,0 +1,12 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+					xmlns:sys="clr-namespace:System;assembly=System.Runtime">
+
+	<FontFamily x:Key="BaseFontFamily">Microsoft PhagsPa</FontFamily>
+
+	<sys:Double x:Key="NameWindowFS">12</sys:Double>
+	<sys:Double x:Key="MenuButtonFS">13</sys:Double>
+	<sys:Double x:Key="MessegeWFS">14</sys:Double>
+	<sys:Double x:Key="RichTextBoxFS">15.5</sys:Double>
+
+</ResourceDictionary>

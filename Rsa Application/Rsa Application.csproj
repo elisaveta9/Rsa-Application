@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <RootNamespace>Rsa_Application</RootNamespace>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Assets\Key.png" />
+    <None Remove="Views\Key.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="6.5.0" />
+    <PackageReference Include="GemBox.Document" Version="35.0.1265" />
+    <PackageReference Include="MathCore.WPF" Version="0.0.44.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Rsa Application.Cryptography\Rsa Application.Cryptography.csproj" />
+    <ProjectReference Include="..\Rsa Application.Database\Rsa Application.Database.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Views\Key.ico" />
+  </ItemGroup>
+
+</Project>

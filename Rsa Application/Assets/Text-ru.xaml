@@ -1,0 +1,40 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+					xmlns:sys="clr-namespace:System;assembly=System.Runtime">
+	
+	<sys:String x:Key="NameApp">RSA converter</sys:String>
+	<sys:String x:Key="AddKeyWindow">Создание ключа</sys:String>
+	<sys:String x:Key="MenegerKeysWindow">Менеджер ключей</sys:String>
+
+	<sys:String x:Key="CreateButton">Создать файл</sys:String>
+	<sys:String x:Key="OpenButton">Открыть файл</sys:String>
+	<sys:String x:Key="ManageButton">Менеджер ключей</sys:String>
+
+	<sys:String x:Key="EncryptButton">Зашифровать</sys:String>
+	<sys:String x:Key="DecryptButton">Расшифровать</sys:String>
+	<sys:String x:Key="EditButton">Редактировать</sys:String>
+
+	<sys:String x:Key="SaveButton">Сохранить файл</sys:String>
+	<sys:String x:Key="SaveCtAsButton">Сохранить шифротекст как...</sys:String>
+	<sys:String x:Key="SaveStAsButton">Сохранить исходный текст как...</sys:String>
+
+	<sys:String x:Key="AddKeyButton">Добавить ключ</sys:String>
+	<sys:String x:Key="UpdateKeysButton">Обновить данные</sys:String>
+	<sys:String x:Key="DeleteKeyButton">Удалить ключ</sys:String>
+	<sys:String x:Key="SetActiveKeyButton">Сделать активным</sys:String>
+
+	<sys:String x:Key="CreateDate">Дата создания</sys:String>
+	<sys:String x:Key="Bits">Количество бит</sys:String>
+	<sys:String x:Key="State">Статус</sys:String>
+	<sys:String x:Key="RemoveKey">Удалить ключ</sys:String>
+	<sys:String x:Key="SetActive">Сделать активным</sys:String>
+
+	<sys:String x:Key="NameKey">Название</sys:String>
+	<sys:String x:Key="LowBits">от 128 до 2048</sys:String>
+	<sys:String x:Key="BigBits">от 2048 бит</sys:String>
+	<sys:String x:Key="CreateKey">Сгенерировать</sys:String>
+
+	<sys:String x:Key="SimpleRsa">Без преобразований</sys:String>
+	<sys:String x:Key="RsaWithAddBytes">С добавлением байт</sys:String>
+	<sys:String x:Key="RsaWithConcateBytes">С конкатенацией байт</sys:String>
+</ResourceDictionary>
