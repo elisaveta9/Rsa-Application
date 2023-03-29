@@ -69,7 +69,7 @@ namespace Rsa_Application.Cryptography
 
         private static bool MillerRabin(mpz_t n)
         {
-            if (gmp_lib.mpz_even_p(n) == 1)
+            if (gmp_lib.mpz_even_p(n) != 0)
                 return false;
             Get_d_s(n, out mpz_t d, out mpz_t s);
             char_ptr number = gmp_lib.mpz_get_str(char_ptr.Zero, 10, n);
