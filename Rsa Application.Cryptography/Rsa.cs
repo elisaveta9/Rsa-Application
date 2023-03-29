@@ -66,9 +66,16 @@ namespace Rsa_Application.Cryptography
                 return EncryptionRSAConcat(Encoding.UTF8.GetBytes(text));
             if (options == Options.RSAES_OAEP)
             {
+                if (_rsaKey.Bits % 8 != 0)
+                    throw new Exception("Используйте для шифрования RSAES_OAEP ключи, длина которых в бит кратна 8");
+
                 byte[] M = Encoding.UTF8.GetBytes(text);
                 byte[] result = Array.Empty<byte>();
                 int k = _rsaKey.Bits / 8, mLen = M.Length, hLen = hash.HashSize / 8, max = k - 2 * hLen - 2;
+
+                if (max <= 0)
+                    throw new Exception("Длина ключа в бит мала для шифрования RSAES-OAEP");
+
                 for (int i = 0; i < mLen; i += max)
                 {
                     byte[] m = new byte[Math.Min(max, mLen - i)];

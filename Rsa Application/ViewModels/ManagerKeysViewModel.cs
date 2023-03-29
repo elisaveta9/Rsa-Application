@@ -3,6 +3,7 @@ using Rsa_Application.Common.Services;
 using Rsa_Application.Database;
 using Rsa_Application.Infrastructure.Interfaces;
 using Rsa_Application.Models;
+using System;
 using System.Collections.ObjectModel;
 using System.Windows;
 using Key = Rsa_Application.Database.Entities.Key;
@@ -14,6 +15,7 @@ namespace Rsa_Application.ViewModels
         private readonly ManagerKeysModel managerKeys;
 
         readonly IWindowService childWindow;
+        readonly IDialogService dialogService;
 
         public ManagerKeysViewModel(KeysRepository keys)
         {
@@ -22,6 +24,7 @@ namespace Rsa_Application.ViewModels
             try { Keys = new ObservableCollection<Key>(keys.GetAll()); }
             catch { Keys = new(); }
             childWindow = new WindowService();
+            dialogService = new DefaultDialogService();
         }
 
         public ObservableCollection<Key> Keys { get => managerKeys.Keys; set { managerKeys.Keys = value; OnPropertyChanged(); } }
@@ -67,11 +70,18 @@ namespace Rsa_Application.ViewModels
             {
                 return deleteKey ??= new RelayCommand(obj =>
                 {
-                    if (SelectedKey != null)
+                    try
                     {
-                        Repository.Delete(SelectedKey.Id);
-                        SelectedKey = null;
-                        Keys = new ObservableCollection<Key>(Repository.GetAll());
+                        if (SelectedKey != null)
+                        {
+                            Repository.Delete(SelectedKey.Id);
+                            SelectedKey = null;
+                            Keys = new ObservableCollection<Key>(Repository.GetAll());
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        dialogService.ShowMessage(ex.Message);
                     }
                 });
             }

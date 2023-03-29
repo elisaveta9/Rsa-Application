@@ -1,5 +1,4 @@
 ﻿using Rsa_Application.Database;
-using Rsa_Application.ViewModels;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
@@ -17,7 +16,7 @@ namespace Rsa_Application.Models
         private string name;
         private KLen lBut = KLen.lLen;
         private int bits, lbit, count, sBit;
-        private static readonly List<int> bBits = new() { 2048, 3072, 4096, 8192 };
+        private static readonly List<int> bBits = new() { 4096, 6144, 8192, 16384 };
 
         public KeysRepository Repository { get => keysRepository; set { keysRepository = value; OnPropertyChanged(); } }
         public List<int> BBits { get => bBits; }

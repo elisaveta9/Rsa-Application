@@ -91,17 +91,22 @@ namespace Rsa_Application.Cryptography
         #region Методы
         public void CreateKeys()
         {
-            if (Bits < 128 || (Bits > 2048 && !(Bits == 2048 || Bits == 3072 || Bits == 4096 || Bits == 8192)))
-                throw new ArgumentException();
+            if (Bits < 128 || (Bits > 2048 && !(Bits == 3072 || Bits == 4096 || Bits == 8192 || Bits == 16384)))
+                throw new ArgumentException("Длина ключей в бит не соотвествует требованиям");
             if (keyE.ToString().Equals("0") || keyN.ToString().Equals("0"))
             {
                 var rand = new Random();
-                mpz_t phi = new(), one = new(), t = new(), copy = new();
-                Primes.GetSafePrimes(Bits / 2, out mpz_t p, out mpz_t q);
+                mpz_t phi = new(), one = new(), t = new(), copy = new(), p = new(), q = new();
                 gmp_lib.mpz_init(phi); gmp_lib.mpz_init(one); gmp_lib.mpz_set_si(one, 1); gmp_lib.mpz_init(t); gmp_lib.mpz_init(copy);
+                gmp_lib.mpz_init(p); gmp_lib.mpz_init(q);                
 
-                gmp_lib.mpz_mul(keyN, p, q); gmp_lib.mpz_sub(p, p, one); gmp_lib.mpz_sub(q, q, one);
-                gmp_lib.mpz_mul(phi, p, q);
+                do
+                {
+                    Primes.GetSafePrimes(Bits, ref p, ref q);
+                    gmp_lib.mpz_mul(keyN, p, q); gmp_lib.mpz_sub(p, p, one);
+                    gmp_lib.mpz_sub(q, q, one); gmp_lib.mpz_mul(phi, p, q);
+                } while (Bits <= 2048 && gmp_lib.mpz_get_str(char_ptr.Zero, 2, keyN).ToString().Length != Bits);
+
 
                 gmp_randstate_t rs = new();
                 gmp_lib.gmp_randinit_mt(rs);
